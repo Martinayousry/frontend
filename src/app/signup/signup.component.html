@@ -1,0 +1,78 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <!-- Form Column -->
+    <div class="col-md-6">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <h3 class="text-center mb-4">Sign Up</h3>
+          <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
+            <div class="form-group mb-3">
+              <label for="name">Full Name</label>
+              <input formControlName="name" type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+              @if(signupForm.get('name')?.errors!==null&&signupForm.get('name')?.touched){
+                <div class="text-danger mt-3">
+                  @if(signupForm.get('name')?.errors?.['required']){<p>Name Required</p>}
+                  @if(signupForm.get('name')?.errors?.['minlength']||signupForm.get('name')?.errors?.['maxlength'])
+                  {<p>length between 2,50</p>}
+                </div>
+                }
+            </div>
+            <div class="form-group mb-3">
+              <label for="email">Email address</label>
+              <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email" required>
+              @if(signupForm.get('email')?.errors!==null&&signupForm.get('email')?.touched){
+                <div class="text-danger mt-3">
+                  @if(signupForm.get('email')?.errors?.['required']){<p>email Required</p>}
+                  @if(signupForm.get('email')?.errors?.['email']){<p>invalid email</p>}
+                </div>
+                }
+                @if(emailErrors!==''){
+                <div class="text-danger mt-3">
+                  <p>{{emailErrors}}</p>
+                </div>
+                }
+            </div>
+            <div class="form-group mb-3">
+              <label for="password">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password" required>
+              @if(signupForm.get('password')?.errors!==null&&signupForm.get('password')?.touched){
+                <div class="text-danger mt-3">
+                  @if(signupForm.get('password')?.errors?.['required']){<p>password Required</p>}
+                  @if(signupForm.get('password')?.errors?.['minlength']||signupForm.get('password')?.errors?.['maxlength'])
+                  {<p>password length 6,20</p>}
+                </div>
+                }
+            </div>
+            <div class="form-group mb-3">
+              <label for="confirmPassword">Confirm Password</label>
+              <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword" placeholder="Confirm your password" required>
+              @if(signupForm.get('confirmPassword')?.errors!==null&&signupForm.get('confirmPassword')?.touched){
+                <div class="text-danger mt-3">
+                  @if(signupForm.get('confirmPassword')?.errors?.['required']){<p>confirm Password Required</p>}
+                  @if(signupForm.get('confirmPassword')?.errors?.['minlength']||signupForm.get('confirmPassword')?.errors?.['maxlength'])
+                  {<p>confirm password length 6,20</p>}
+                </div>
+                }
+                @if(passwordErrors!==''){
+                <div class="text-danger mt-3">
+                  <p>{{passwordErrors}}</p>
+                </div>
+                }
+            </div>
+            <div class="d-grid gap-2">
+              <button [disabled]="signupForm.invalid" class="btn btn-block" style="background-color:#7c4dff;">Sign Up</button>
+            </div>
+            <div class="text-center mt-3">
+              <p>Already have an account? <a routerLink="/login" class="text-white">Login</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Column -->
+    <div class="col-md-6 d-none d-md-block">
+      <img src="/images/signup.png" class="img-fluid" alt="Sign Up Image" style="max-height: 500px; object-fit: cover; height: 100%;">
+    </div>
+  </div>
+</div>
