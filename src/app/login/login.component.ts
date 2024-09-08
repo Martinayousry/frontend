@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit,OnDestroy {
   constructor(private _AuthService: AuthService, private _Router: Router) {
     // this.loginImage = _AuthService.authPhoto
   }
@@ -32,4 +32,11 @@ export class LoginComponent {
       this.invalidLogin = err.error.message
     })
   }
+  ngOnInit(): void {
+
+  }
+  ngOnDestroy(): void {
+ 
+  }
+
 }

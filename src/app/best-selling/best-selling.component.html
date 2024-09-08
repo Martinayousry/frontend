@@ -1,0 +1,24 @@
+<div class="bg-black text-white container mt-2 d-flex justify-content-around align-items-center">
+  <div class="text-center m-3">
+    <h1>Best Seller Products</h1>
+  </div>
+  <img src="images/iphone_14.jpg" style="width: 800px;" alt="iPhone">
+</div>
+<div class="cont mt-5">
+  @for(product of products; track product._id){
+  <div class="product-card ">
+      <div class="product-card__image">
+          <img [src]="imgDomain+product.cover" [alt]="product.name">
+      </div>
+      <div class="product-card__info">
+          <h2 class="product-card__title">{{product.name}}</h2>
+          <p class="product-card__description">{{product.description|description:15}}</p>
+          <div class="product-card__price-row">
+              <span class="product-card__price">{{product.price|currency}}</span>
+              <button class="product-card__btn" [routerLink]="['/products',product._id]" >See More</button>
+
+          </div>
+      </div>
+  </div>
+}
+</div>
