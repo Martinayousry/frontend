@@ -1,16 +1,16 @@
 <section class="bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-  <div class="mask d-flex align-items-center gradient-custom-3" style="min-height: 80vh;"> <!-- Adjusted height -->
+  <div class="mask d-flex align-items-center gradient-custom-3" style="min-height: 80vh;">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style="border-radius: 15px; height: 50%;"> <!-- Adjusted card height -->
-            <div class="card-body p-4 "> <!-- Reduced padding -->
+          <div class="card" style="border-radius: 15px; height: 50%;">
+            <div class="card-body p-4 ">
               <h2 class="text-uppercase text-center mb-4">Create an account</h2>
 
-              <!-- Angular Reactive Form -->
+
               <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
 
-                <!-- Name Input -->
+
                 <div class="form-outline mb-3 form-group"> <!-- Reduced margin -->
                   <label class="form-label" for="form3Example1cg">Your Name</label>
                   <input formControlName="name" type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Your Name" required />
@@ -23,7 +23,7 @@
                     }
                 </div>
 
-                <!-- Email Input -->
+
                 <div class="form-outline mb-3 form-group"> <!-- Reduced margin -->
                   <label class="form-label" for="form3Example3cg">Your Email</label>
                   <input formControlName="email" type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email" required />
@@ -40,7 +40,7 @@
                     }
                 </div>
 
-                <!-- Password Input -->
+
                 <div class="form-outline mb-3 form-group"> <!-- Reduced margin -->
                   <label class="form-label" for="form3Example4cg">Password</label>
                   <input formControlName="password" type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" required />
@@ -53,8 +53,8 @@
                     }
                 </div>
 
-                <!-- Confirm Password Input -->
-                <div class="form-outline mb-3 form-group"> <!-- Reduced margin -->
+
+                <div class="form-outline mb-3 form-group">
                   <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                   <input formControlName="confirmPassword" type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat your password" required />
                   @if(signupForm.get('confirmPassword')?.errors!==null&&signupForm.get('confirmPassword')?.touched){
@@ -71,7 +71,7 @@
                     }
                 </div>
 
-                <!-- Terms and Conditions -->
+
                 <div class="form-check d-flex justify-content-center mb-4 form-group"> <!-- Reduced margin -->
                   <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
                   <label class="form-check-label" for="form2Example3g">
@@ -79,14 +79,13 @@
                   </label>
                 </div>
 
-                <!-- Submit Button -->
                 <div class="d-flex justify-content-center">
                   <button [disabled]="signupForm.invalid" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
                     Register
                   </button>
                 </div>
 
-                <!-- Existing Account Link -->
+                
                 <p class="text-center text-muted mt-4 mb-0">Already have an account?
                   <a routerLink="/login" class="fw-bold text-body"><u>Login here</u></a>
                 </p>
