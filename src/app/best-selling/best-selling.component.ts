@@ -20,15 +20,14 @@ export class BestSellingComponent implements OnInit, OnDestroy {
   search: string = '';
   products: any[] = []
 
-  constructor(private _AuthService: AuthService, private _ProductsService: ProductsService,private _CartService:CartService) { }
+  constructor( private _ProductsService: ProductsService,private _CartService:CartService) { }
 
   addToCart(productId: string) {
     this._CartService.addProductToCart(productId).subscribe((res) => { alert('Product Added to cart') })
   }
 
   ngOnInit(): void {
-    this._AuthService.checkToken()
-    this.imgDomain = this._ProductsService.imgDomain;
+    this.imgDomain = this._ProductsService.productImages;
     this.subscription = this._ProductsService.getProducts(16, 1, '-sold', this.search).subscribe((res) => {
       this.products = res.data;
     })

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule ,FormControl,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { JsonPipe } from '@angular/common';
@@ -27,17 +27,20 @@ export class SignupComponent {
   // signUpImage: string = '';
 
   signup(formData: FormGroup) {
-    this._AuthService.singUp(formData.value).subscribe((res) => {
-      if (res.token) {
-        localStorage.setItem('user', res.token)
-        this._AuthService.saveCurrentUser()
+    this._AuthService.singUp(formData.value).subscribe({
+      next: (res) => {
+        if (res.token) {
+          localStorage.setItem('user', res.token)
+          this._AuthService.saveCurrentUser()
+        }
+        this._Router.navigate(['/home'])
+      }, error: (err) => {
+        err.error.errors.map((error: any) => {
+          if (error.path === 'email') this.emailErrors = error.msg;
+          if (error.path === 'password') this.passwordErrors = error.msg;
+        })
       }
-      this._Router.navigate(['/home'])
-    }, (err) => {
-      err.error.errors.map((error: any) => {
-        if (error.path === 'email') this.emailErrors = error.msg;
-        if (error.path === 'password') this.passwordErrors = error.msg;
-      })
     })
   }
+  // ngOnInit(): void { this.phoneImage = this._AuthService.authPhoto };
 };

@@ -28,8 +28,23 @@
           </li>
           }
           @if(isLogin){
-            <li class="nav-item">
-              <button class="nav-link" (click)="logout()" aria-current="page">logout</button>
+            <li class="dropdown nav-item">
+              <a class="dropdown-toggle nav-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">user
+                setting</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="profile">Profile</a></li>
+                <li><a class="dropdown-item" routerLink="myOrders">My Orders</a></li>
+                <li><a class="dropdown-item" routerLink="myReviews">My Reviews</a></li>
+                <li class="nav-item">
+                  <button class="dropdown-item" (click)="logout()" aria-current="page">logout</button>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item mt-2">
+              <a class="nav-link fa-solid fa-cart-shopping" aria-current="page" routerLink="cart"></a>
+            </li>
+            <li class="nav-item mt-2">
+              <a class="nav-link fa-regular fa-heart" aria-current="page" routerLink="wishlist"></a>
             </li>
             }
       </ul>

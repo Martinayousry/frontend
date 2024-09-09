@@ -5,6 +5,7 @@ import { DescriptionPipe } from '../pipes/description.pipe';
 import { Pagination } from '../interfaces/pagination';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { CartService } from '../services/cart.service';
 
 
 @Component({
@@ -21,10 +22,9 @@ export class ProductsComponent implements OnInit {
   imgDomain: string = '';
   search: string = '';
   page: number = 1;
-  constructor(private _AuthService: AuthService, private _ProductsService: ProductsService) { }
+  constructor(private _ProductsService: ProductsService, private _CartService: CartService) { }
 
   loadProducts() {
-    this.imgDomain = this._ProductsService.imgDomain;
     this.subscription = this._ProductsService.getProducts(16, this.page, undefined, this.search).subscribe((res) => {
       this.products = res.data;
       this.pagination = res.pagination
@@ -39,7 +39,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._AuthService.checkToken()
+    this.imgDomain = this._ProductsService.productImages;
     this.loadProducts();
   }
 
