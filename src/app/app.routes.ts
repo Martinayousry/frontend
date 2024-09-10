@@ -14,5 +14,10 @@ export const routes: Routes = [
   { path: 'signup', loadComponent: () => import('./signup/signup.component').then(m => m.SignupComponent) },
   { path: 'login', loadComponent: () => import('./login/login.component').then(m => m.LoginComponent) },
   { path: 'forgetPassword', loadComponent: () => import('./forget-password/forget-password.component').then(m => m.ForgetPasswordComponent) },
+  { path: 'wishlist', title: 'wishlist', canActivate: [authGuard], loadComponent: () => import('./wishlist/wishlist.component').then(m => m.WishlistComponent) },
+  { path: 'cart', title: 'cart', canActivate: [authGuard], loadComponent: () => import('./cart/cart.component').then(m => m.CartComponent) },
+  { path: 'myReviews', title: 'Reviews', canActivate: [authGuard], loadComponent: () => import('./reviews/reviews.component').then(m => m.ReviewsComponent) },
+  { path: 'myOrders', title: 'Orders', canActivate: [authGuard], loadComponent: () => import('./orders/orders.component').then(m => m.OrdersComponent) },
+  { path: 'profile', title: 'Profile', canActivate: [authGuard], loadComponent: () => import('./profile/profile.component').then(m => m.ProfileComponent) },
   { path: '**', component: NotfoundComponent }
 ];

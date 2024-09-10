@@ -7,7 +7,6 @@ import { GlobalService } from './global.service';
   providedIn: 'root'
 })
 export class WishlistService {
-  
   private hostName: string = ''
   private routeName: string = ''
   constructor(private _HttpClient: HttpClient, private _GlobalService: GlobalService) {
@@ -18,4 +17,12 @@ export class WishlistService {
   addProductToWishlist(product: string): Observable<any> {
     return this._HttpClient.post(`${this.hostName}${this.routeName}`, { product }, { headers: { authorization: `Bearer ${localStorage.getItem('user')}` } })
   }
+
+  getUserWishlist(): Observable<any> {
+    return this._HttpClient.get(`${this.hostName}${this.routeName}`, { headers: { authorization: `Bearer ${localStorage.getItem('user')}` } })
+  }
+
+  removeProductFromWishlist(itemId: string): Observable<any> {
+    return this._HttpClient.delete(`${this.hostName}${this.routeName}/${itemId}`, { headers: { authorization: `Bearer ${localStorage.getItem('user')}` } })
+  };
 }

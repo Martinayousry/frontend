@@ -1,98 +1,95 @@
 <section class="bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-  <div class="mask d-flex align-items-center gradient-custom-3" style="min-height: 80vh;">
+  <div class="mask d-flex align-items-center gradient-custom-3">
     <div class="container">
       <div class="row d-flex justify-content-center align-items-center">
+        <h2 class="text-uppercase text-center mt-4 mb-3">Create an account</h2>
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style="border-radius: 15px; height: 50%;">
-            <div class="card-body p-4 ">
-              <h2 class="text-uppercase text-center mb-4">Create an account</h2>
+          <div class="card card-body p-4 mb-5" style="border-radius: 15px;">
+            <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
 
 
-              <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm)">
+              <div class="form-outline mb-3 form-group" >
+                <label class="form-label" for="form3Example1cg">Your Name</label>
+                <input formControlName="name" type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Your Name" required />
+                @if(signupForm.get('name')?.errors!==null&&signupForm.get('name')?.touched){
+                  <div class="text-danger mt-1">
+                    @if(signupForm.get('name')?.errors?.['required']){<p>Name Required</p>}
+                    @if(signupForm.get('name')?.errors?.['minlength']||signupForm.get('name')?.errors?.['maxlength'])
+                    {<p>length between 2,50</p>}
+                  </div>
+                  }
+              </div>
 
 
-                <div class="form-outline mb-3 form-group"> <!-- Reduced margin -->
-                  <label class="form-label" for="form3Example1cg">Your Name</label>
-                  <input formControlName="name" type="text" id="form3Example1cg" class="form-control form-control-lg" placeholder="Your Name" required />
-                  @if(signupForm.get('name')?.errors!==null&&signupForm.get('name')?.touched){
-                    <div class="text-danger mt-1">
-                      @if(signupForm.get('name')?.errors?.['required']){<p>Name Required</p>}
-                      @if(signupForm.get('name')?.errors?.['minlength']||signupForm.get('name')?.errors?.['maxlength'])
-                      {<p>length between 2,50</p>}
-                    </div>
-                    }
-                </div>
+              <div class="form-outline mb-3 form-group">
+                <label class="form-label" for="form3Example3cg">Your Email</label>
+                <input formControlName="email" type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email" required />
+                @if(signupForm.get('email')?.errors!==null&&signupForm.get('email')?.touched){
+                  <div class="text-danger mt-1">
+                    @if(signupForm.get('email')?.errors?.['required']){<p>Email Required</p>}
+                    @if(signupForm.get('email')?.errors?.['email']){<p>Invalid email</p>}
+                  </div>
+                  }
+                  @if(emailErrors!==''){
+                  <div class="text-danger mt-1">
+                    <p>{{emailErrors}}</p>
+                  </div>
+                  }
+              </div>
 
 
-                <div class="form-outline mb-3 form-group"> <!-- Reduced margin -->
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
-                  <input formControlName="email" type="email" id="form3Example3cg" class="form-control form-control-lg" placeholder="Your Email" required />
-                  @if(signupForm.get('email')?.errors!==null&&signupForm.get('email')?.touched){
-                    <div class="text-danger mt-1">
-                      @if(signupForm.get('email')?.errors?.['required']){<p>Email Required</p>}
-                      @if(signupForm.get('email')?.errors?.['email']){<p>Invalid email</p>}
-                    </div>
-                    }
-                    @if(emailErrors!==''){
-                    <div class="text-danger mt-1">
-                      <p>{{emailErrors}}</p>
-                    </div>
-                    }
-                </div>
+              <div class="form-outline mb-3 form-group">
+                <label class="form-label" for="form3Example4cg">Password</label>
+                <input formControlName="password" type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" required />
+                @if(signupForm.get('password')?.errors!==null&&signupForm.get('password')?.touched){
+                  <div class="text-danger mt-1">
+                    @if(signupForm.get('password')?.errors?.['required']){<p>Password Required</p>}
+                    @if(signupForm.get('password')?.errors?.['minlength']||signupForm.get('password')?.errors?.['maxlength'])
+                    {<p>Password length 6,20</p>}
+                  </div>
+                  }
+              </div>
 
 
-                <div class="form-outline mb-3 form-group"> <!-- Reduced margin -->
-                  <label class="form-label" for="form3Example4cg">Password</label>
-                  <input formControlName="password" type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Password" required />
-                  @if(signupForm.get('password')?.errors!==null&&signupForm.get('password')?.touched){
-                    <div class="text-danger mt-1">
-                      @if(signupForm.get('password')?.errors?.['required']){<p>Password Required</p>}
-                      @if(signupForm.get('password')?.errors?.['minlength']||signupForm.get('password')?.errors?.['maxlength'])
-                      {<p>Password length 6,20</p>}
-                    </div>
-                    }
-                </div>
+              <div class="form-outline mb-3 form-group">
+                <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                <input formControlName="confirmPassword" type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat your password" required />
+                @if(signupForm.get('confirmPassword')?.errors!==null&&signupForm.get('confirmPassword')?.touched){
+                  <div class="text-danger mt-1">
+                    @if(signupForm.get('confirmPassword')?.errors?.['required']){<p>Confirm Password Required</p>}
+                    @if(signupForm.get('confirmPassword')?.errors?.['minlength']||signupForm.get('confirmPassword')?.errors?.['maxlength'])
+                    {<p>Confirm password length 6,20</p>}
+                  </div>
+                  }
+                  @if(passwordErrors!==''){
+                  <div class="text-danger mt-1">
+                    <p>{{passwordErrors}}</p>
+                  </div>
+                  }
+              </div>
 
 
-                <div class="form-outline mb-3 form-group">
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                  <input formControlName="confirmPassword" type="password" id="form3Example4cdg" class="form-control form-control-lg" placeholder="Repeat your password" required />
-                  @if(signupForm.get('confirmPassword')?.errors!==null&&signupForm.get('confirmPassword')?.touched){
-                    <div class="text-danger mt-1">
-                      @if(signupForm.get('confirmPassword')?.errors?.['required']){<p>Confirm Password Required</p>}
-                      @if(signupForm.get('confirmPassword')?.errors?.['minlength']||signupForm.get('confirmPassword')?.errors?.['maxlength'])
-                      {<p>Confirm password length 6,20</p>}
-                    </div>
-                    }
-                    @if(passwordErrors!==''){
-                    <div class="text-danger mt-1">
-                      <p>{{passwordErrors}}</p>
-                    </div>
-                    }
-                </div>
+              <div class="form-check d-flex justify-content-center mb-4 form-group"> <!-- Reduced margin -->
+                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
+                <label class="form-check-label" for="form2Example3g">
+                  I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
+                </label>
+              </div>
+
+              <div class="d-flex justify-content-center">
+                <button [disabled]="signupForm.invalid" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
+                  Register
+                </button>
+              </div>
 
 
-                <div class="form-check d-flex justify-content-center mb-4 form-group"> <!-- Reduced margin -->
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div>
+              <p class="text-center text-muted mt-4 mb-0">Already have an account?
+                <a routerLink="/login" class="fw-bold text-body btn"><u>Login here</u></a>
+              </p>
 
-                <div class="d-flex justify-content-center">
-                  <button [disabled]="signupForm.invalid" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">
-                    Register
-                  </button>
-                </div>
-
-                
-                <p class="text-center text-muted mt-4 mb-0">Already have an account?
-                  <a routerLink="/login" class="fw-bold text-body"><u>Login here</u></a>
-                </p>
-
-              </form>
+            </form>
             </div>
-          </div>
+
         </div>
       </div>
     </div>

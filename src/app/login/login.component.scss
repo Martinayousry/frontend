@@ -1,5 +1,12 @@
-.container{
- width: 60%;
- margin-bottom: 40px;
- 
+.gradient-custom-3 {
+  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+}
+
+.gradient-custom-4 {
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
 }

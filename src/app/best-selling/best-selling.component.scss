@@ -76,7 +76,7 @@
 }
 
 .product-card__btn {
-  background-color: var(--primary-color);
+
   color: white;
   border: none;
   padding: 10px 20px;
@@ -85,8 +85,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: #8a66e6;
+
 }
+.gradient-custom-4 {
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+}
+
 
 
 
@@ -138,8 +142,8 @@
   z-index: -1;
   background: conic-gradient(
     from 180deg at 50% 50%,
-    #1f363d 0deg,
-    #ffffff 360deg
+    #669b91 0deg,
+    #93c3ae 360deg
   );
   animation: rotate-gradient 7s linear infinite;
 }
@@ -147,8 +151,8 @@
 .container {
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   max-width: 100%;
 
   padding: 10%;
@@ -156,6 +160,19 @@
   overflow: hidden;
   color: #1f363d;
 }
+.hero-content {
+  width: 60%;
+}
+
+.hero-image {
+  width: 40%;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
 
 h1 {
   font-size: 4rem;

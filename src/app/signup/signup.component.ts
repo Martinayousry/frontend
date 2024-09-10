@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule ,FormControl,FormGroup,Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { JsonPipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule,JsonPipe],
+  imports: [ReactiveFormsModule,JsonPipe,RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
