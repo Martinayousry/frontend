@@ -3,11 +3,12 @@ import { AuthService } from '../services/auth.service';
 import { ReviewsService } from '../services/reviews.service';
 import { Pagination } from '../interfaces/pagination';
 import { GlobalService } from '../services/global.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reviews',
   standalone: true,
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './reviews.component.html',
   styleUrl: './reviews.component.scss'
 })
@@ -19,6 +20,9 @@ export class ReviewsComponent implements OnInit, OnDestroy {
   pagination: Pagination = {};
   search: string = ''
   productImage: string = '';
+  // editingReviewId: string | null = null;
+  // updatedComment: string = '';
+
 
   constructor(private _AuthService: AuthService, private _ReviewsService: ReviewsService, private _GlobalService: GlobalService) { }
 
@@ -40,6 +44,30 @@ export class ReviewsComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  // editReview(reviewId: string, currentComment: string) {
+  //   this.editingReviewId = reviewId;
+  //   this.updatedComment = currentComment;
+  // }
+
+
+  // submitUpdate(reviewId: string) {
+  //   this._ReviewsService.updateUserReview(reviewId, { comment: this.updatedComment }).subscribe({
+  //     next: (res) => {
+  //       this.loadReviews();
+  //       this.cancelEdit();
+  //       alert('Review updated successfully');
+  //     },
+  //     error: (err) => {
+  //       console.error('Error updating review:', err);
+  //     }
+  //   });
+  // }
+
+  // cancelEdit() {
+  //   this.editingReviewId = null;
+  //   this.updatedComment = '';
+  // }
 
   changePage(page: number) {
     this.page = page;

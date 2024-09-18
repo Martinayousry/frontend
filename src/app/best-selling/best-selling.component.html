@@ -1,30 +1,36 @@
-<div class="container d-flex  justify-content-between">
-  <div class="hero-content">
-    <h1>Your Perfect <span>Shopping <br>Experience</span> Awaits.</h1>
-    <p class="text-black">Discover top-notch products, unbeatable deals, and a seamless shopping experience that brings the best to your doorstep. Shop now, because your next favorite item is just a click away.</p>
-    <div class="bg"></div>
-  </div>
 
-  <!-- Image on the Right -->
-  <div class="ms-5 hero-image">
-    <img src="/images/buytopia.png" alt="Buytopia" class="img-fluid">
-  </div>
-</div>
-<div class="cont mt-5">
-  @for(product of products; track product._id){
-  <div class="product-card ">
-      <div class="product-card__image">
-          <img [src]="imgDomain+product.cover" [alt]="product.name">
-      </div>
-      <div class="product-card__info">
-          <h2 class="product-card__title">{{product.name}}</h2>
-          <p class="product-card__description">{{product.description|description:15}}</p>
-          <div class="product-card__price-row">
-              <span class="product-card__price">{{product.price|currency}}</span>
-              <button class="product-card__btn gradient-custom-4" [routerLink]="['/products',product._id]" >See More</button>
 
-          </div>
-      </div>
+  <div class="container d-flex  justify-content-between">
+    <div class="hero-content">
+      <h1>Your Perfect <span>Shopping <br>Experience</span> Awaits.</h1>
+      <p class="text-black">Discover top-notch products, unbeatable deals, and a seamless shopping experience that brings the best to your doorstep. Shop now, because your next favorite item is just a click away.</p>
+      <div class="bg"></div>
+    </div>
+
+    <!-- Image on the Right -->
+    <div class="ms-5 hero-image">
+      <img src="/images/buytopia.png" alt="Buytopia" class="img-fluid">
+    </div>
+  </div>
+  @if (loading) {<app-spinner></app-spinner>}
+  @else {
+  <div class="cont mt-5">
+    @for(product of products; track product._id){
+    <div class="product-card ">
+        <div class="product-card__image">
+            <img [src]="imgDomain+product.cover" [alt]="product.name">
+        </div>
+        <div class="product-card__info">
+            <h2 class="product-card__title">{{product.name}}</h2>
+            <p class="product-card__description">{{product.description|description:15}}</p>
+            <div class="product-card__price-row">
+                <span class="product-card__price">{{product.price|currency}}</span>
+                <button class="product-card__btn gradient-custom-4" [routerLink]="['/products',product._id]" >See More</button>
+
+            </div>
+        </div>
+    </div>
+  }
   </div>
 }
-</div>
+

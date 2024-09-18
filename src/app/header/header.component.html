@@ -12,19 +12,17 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="products">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/contact">About</a>
-        </li>
+
       </ul>
 
       <!-- Right-side links -->
       <ul class="navbar-nav ms-auto">
         @if(!isLogin){
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLink="login">login</a>
+            <a class="nav-link" aria-current="page" routerLink="account/login">login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLink="signup">signup</a>
+            <a class="nav-link" aria-current="page" routerLink="account/signup">signup</a>
           </li>
           }
           @if(isLogin){

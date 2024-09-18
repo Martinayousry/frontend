@@ -2,6 +2,8 @@
   <h2 class="text-center my-5">My Orders</h2>
   <hr class="my-3">
   <table class="w-100">
+    @if(loading){<app-spinner></app-spinner>}
+    @else{
     <thead>
       <tr class="border-bottom">
         <th>products</th>
@@ -29,6 +31,7 @@
       </tr>
       }
     </tbody>
+  }
   </table>
 </div>
 
@@ -46,3 +49,4 @@
         class="page-link">Next</button></li>}
   </ul>
 </div>
+

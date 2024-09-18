@@ -1,3 +1,4 @@
+
 :root {
   --primary-color: #D83344;
   --text-color: #333333;
@@ -75,7 +76,7 @@
 }
 
 .product-card__btn {
-  background-color: var(--primary-color);
+
   color: white;
   border: none;
   padding: 10px 20px;
@@ -84,8 +85,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: #8a66e6;
+
 }
+.gradient-custom-4 {
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+}
+
 
 
 
@@ -121,6 +126,126 @@
     font-size: 0.8rem;
   }
 }
-.gradient-custom-4 {
-  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Inter", sans-serif;
+}
+
+.bg {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vw;
+  z-index: -1;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    #669b91 0deg,
+    #93c3ae 360deg
+  );
+  animation: rotate-gradient 7s linear infinite;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 100%;
+
+  padding: 10%;
+  box-sizing: border-box;
+  overflow: hidden;
+  color: #1f363d;
+}
+.hero-content {
+  width: 60%;
+}
+
+.hero-image {
+  width: 40%;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+h1 {
+  font-size: 4rem;
+}
+
+h1 span {
+  color: white;
+}
+
+p {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+@keyframes rotate-gradient {
+  from {
+    transform: rotate(0deg) scale(3);
+  }
+  to {
+    transform: rotate(360deg) scale(3);
+  }
+}
+//spinner
+.spinner {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.circle {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(131, 198, 226);
+  border-radius: 30px;
+  margin: 7px;
+  animation-name: circle-animation;
+  animation-duration: 2.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out
+
+}
+.circle1 {
+  animation-delay: 0.2s;
+}
+.circle2 {
+  animation-delay: 0.4s;
+}
+.circle3 {
+  animation-delay: 0.6s;
+}
+.circle4 {
+  animation-delay: 0.8s;
+}
+.circle5 {
+  animation-delay: 1s;
+}
+
+@keyframes circle-animation {
+  0% {
+    background-color: aqua;
+    scale: 10%;
+  }
+  25% {
+    background-color: aquamarine;
+    scale: 20%;
+  }
+  50% {
+    background-color: lightskyblue;
+    scale: 40%;
+  }
+  100% {
+    background-color: blue;
+    scale: 60%;
+  }
 }

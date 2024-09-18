@@ -1,99 +1,70 @@
-<section class="h-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12">
-        <div class="card card-registration card-registration-2" style="border-radius: 15px;">
-          <div class="card-body p-0">
-            <div class="row g-0">
-              <div class="col-lg-8">
-                <div class="p-5">
-                  <div class="d-flex justify-content-between align-items-center mb-5">
-                    <h1 class="fw-bold mb-0">Shopping Cart</h1>
-                    <h6 class="mb-0 text-muted">{{productsLength}} items</h6>
-                  </div>
-                  <hr class="my-4">
-
-                  @for(item of cart?.cartItems; track item._id){
-                  <div class="row mb-4 d-flex justify-content-between align-items-center">
-                    <div class="col-md-2 col-lg-2 col-xl-2">
-                      <img [src]="productImage+item?.product?.cover" class="img-fluid rounded-3"
-                        [alt]="item?.product?.name">
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h6 class="text-muted">{{item?.product?.subcategory?.name}}</h6>
-                      <h6 class="mb-0">{{item?.product?.name}}</h6>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <h6 class="mb-0">Quantity {{item?.quantity}}</h6>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0">{{item?.price|currency}}</h6>
-                    </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <button (click)="removeItem(item._id)" class="text-muted nav-link"><i
-                          class="fas fa-times"></i></button>
-                    </div>
-                  </div>
-                  <hr class="my-4">
-                  }
-                  <button (click)="clearCart()" class="btn btn-danger">Clear Cart</button>
-                </div>
-              </div>
-
-
-              <div class="col-lg-4 bg-body-tertiary">
-                <div class="p-5">
-                  <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
-                  <hr class="my-4">
-
-                  <div class="d-flex justify-content-between mb-4">
-                    <h5 class="text-uppercase">{{productsLength}} items</h5>
-                    <h5>{{cart?.totalPrice|currency}}</h5>
-                  </div>
-                  <div class="d-flex justify-content-between mb-4">
-                    <h5 class="text-uppercase">tax price</h5>
-                    <h5>{{taxPrice|currency}}</h5>
-                  </div>
-
-                  <hr class="my-4">
-
-                  <form [formGroup]="couponForm" (ngSubmit)="addCoupon(couponForm)">
-                    <h5 class="text-uppercase mb-3">Promo code</h5>
-
-                    <div class="mb-5">
-                      <div data-mdb-input-init class="form-outline">
-                        <input formControlName="name" type="text" id="form3Examplea2"
-                          class="form-control form-control-lg" />
-                        @if(couponError !==''){
-                        <label class="form-label text-danger" for="">{{couponError}}</label>
-                        }
-                      </div>
-                    </div>
-                    <button [disabled]="couponForm.invalid" class="btn btn-outline-danger">Add Code</button>
-                  </form>
-
-                  <hr class="my-4">
-
-                  <div class="d-flex justify-content-between mb-5">
-                    <h5 class="text-uppercase">Total price</h5>
-                    <h5>{{cart?.totalPrice+taxPrice|currency}}</h5>
-                  </div>
-                  @if(cart?.totalPriceAfterDiscount){
-                  <div class="d-flex justify-content-between mb-5">
-                    <h5 class="text-uppercase">After Discount</h5>
-                    <h5>{{cart?.totalPriceAfterDiscount+taxPrice|currency}}</h5>
-                  </div>
-                  }
-
-                  <button (click)="createOrder()" type="button" data-mdb-button-init data-mdb-ripple-init
-                    class="btn btn-danger btn-block btn-lg" data-mdb-ripple-color="dark">Checkout</button>
-
-                </div>
-              </div>
-            </div>
+<div class="card mt-5 mb-5">
+  <div class="row">
+    <div class="col-md-8 cart">
+      <div class="title">
+        <div class="row">
+          <div class="col"><h4><b>Shopping Cart</b></h4></div>
+          <div class="col align-self-center text-right text-muted">{{cart?.cartItems?.length}} items</div>
+        </div>
+      </div>
+      @for(item of cart?.cartItems; track item._id) {
+      <div class="row border-top border-bottom">
+        <div class="row main align-items-center">
+          <div class="col-2">
+            <img class="img-fluid" [src]="productImage + item?.product?.cover" alt="{{item?.product?.name}}">
+          </div>
+          <div class="col">
+            <div class="row text-muted">{{item?.product?.subcategory?.name}}</div>
+            <div class="row">{{item?.product?.name}}</div>
+          </div>
+          <div class="col">{{item?.price | currency}}</div>
+          <div class="col">
+            <span class="close " style="cursor: pointer;" (click)="removeItem(item._id)">&times;</span>
           </div>
         </div>
       </div>
+      }
+      <div class="back-to-shop">
+        <a href="#">&leftarrow;</a>
+        <span class="text-muted">Back to shop</span>
+        <button (click)="clearCart()" class="btn  float-right">Clear Cart</button>
+      </div>
+    </div>
+    <div class="col-md-4 summary">
+      <div><h5><b>Summary</b></h5></div>
+      <hr>
+      <div class="row">
+        <div class="col" style="padding-left:0;">ITEMS {{cart?.cartItems?.length}}</div>
+        <div class="col text-right">{{cart?.totalPrice | currency}}</div>
+      </div>
+
+      <!-- Tax Price -->
+      <div class="row">
+        <div class="col" style="padding-left:0;">TAX</div>
+        <div class="col text-right">{{taxPrice | currency}}</div>
+      </div>
+
+      <!-- Promo Code Section -->
+      <form [formGroup]="couponForm" (ngSubmit)="addCoupon(couponForm)">
+        <p>PROMO CODE</p>
+        <input id="code" placeholder="Enter your code" formControlName="name">
+        @if(couponError !==''){
+        <label class="form-label text-danger">{{couponError}}</label>
+        }
+        <button type="submit" [disabled]="couponForm.invalid" class="btn btn-outline-danger">Add Code</button>
+      </form>
+      <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+        <div class="col">TOTAL PRICE</div>
+        <div class="col text-right">
+          {{cart?.totalPrice + taxPrice | currency}}
+          @if(cart?.totalPriceAfterDiscount) {
+          <br><span class="text-muted">After Discount: {{cart?.totalPriceAfterDiscount + taxPrice | currency}}</span>
+          }
+        </div>
+      </div>
+
+      <!-- Checkout Button -->
+      <button class="btn btn-danger" (click)="createOrder()">CHECKOUT</button>
     </div>
   </div>
-</section>
+</div>

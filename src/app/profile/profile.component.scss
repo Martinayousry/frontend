@@ -1,0 +1,33 @@
+.gradient-custom-4 {
+  background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+}
+
+.animated-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: slideDown 1s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-gradient-custom {
+  background-color: rgba(255, 0, 0, 0.7);
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-custom:hover {
+  background-color: rgba(255, 0, 0, 1);
+  transform: scale(1.05);
+}

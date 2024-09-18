@@ -31,8 +31,8 @@ header {
 }
 
 .small-Card img {
-  width: 104px;
-  height: 104px;
+  width: 100%;
+  height: 100%;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -103,7 +103,7 @@ button {
 }
 
 button:hover {
-  background: #ff4242;
+  background: #6b85a1;
   transition: ease-in 0.4s;
 }
 
@@ -194,3 +194,7 @@ body {
 .rating>input:checked~label:hover~label {
   color: #FECE31;
 }
+.gradient-custom-4 {
+  background: linear-gradient(to right, rgb(64, 161, 100), rgb(100, 165, 197));
+}
+

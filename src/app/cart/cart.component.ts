@@ -21,6 +21,7 @@ export class CartComponent implements OnInit, OnDestroy {
   productImage: string = ''
   taxPrice: number = 100;
   couponError: string = '';
+  address:string='';
   couponForm = new FormGroup({
     name: new FormControl(null, [Validators.required])
   })

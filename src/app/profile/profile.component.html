@@ -1,21 +1,22 @@
 <div class="container m-5">
-  <h1 class="text-center my-5">Profile Information</h1>
-  <div class="w-50 m-auto shadow p-2 rounded-3 d-flex justify-content-center align-items-center">
+  <h1 class="text-center my-5 animated-title">Profile Information</h1>
+  <div class="w-50 m-auto shadow p-4 rounded-3 d-flex justify-content-center align-items-center bg-light gradient-custom-4">
     <div class="w-25">
-      <img class="w-75 rounded-4" [src]="userImage+user.image" alt="userData.name">
+      <img class="w-75 rounded-4 shadow" [src]="userImage+user.image" alt="{{user.name}}">
     </div>
-    <div>
-      <div class="w-75 m-auto my-4">
-        <label for="">Email : {{user.email}}</label>
+    <div class="w-75 ps-4">
+      <div class="my-3">
+        <label for="email" class="form-label fw-bold">Email:</label>
+        <p class="form-text">{{user.email}}</p>
       </div>
-      <div class="w-75 m-auto my-4">
-        <input class="form-control" type="text" placeholder="name" (change)="getName(userName.value)" #userName [value]="user.name">
+      <div class="my-3">
+        <input class="form-control shadow-sm" type="text" placeholder="name" (change)="getName(userName.value)" #userName [value]="user.name">
       </div>
-      <div class="w-75 m-auto my-4">
-        <input class="form-control" (change)="getFile($event)" type="file" accept="image/*">
+      <div class="my-3">
+        <input class="form-control shadow-sm" (change)="getFile($event)" type="file" accept="image/*">
       </div>
-      <div class="w-75 m-auto my-4">
-        <button (click)="updateUser()" class="btn btn-danger">Update Data</button>
+      <div class="my-3 text-center">
+        <button (click)="updateUser()" class="btn btn-gradient-custom">Update Data</button>
       </div>
     </div>
   </div>
@@ -24,16 +25,18 @@
 <hr class="my-5">
 
 <div class="container m-5">
-  <h1 class="text-center my-5">Change Password</h1>
-  <form [formGroup]="passwordForm" (ngSubmit)="changeUserPassword(passwordForm)"
-    class="w-50 m-auto shadow p-2 rounded-3">
-    <div class="w-75 m-auto my-4">
-      <input formControlName="currentPassword" class="form-control" type="password" placeholder="current password">
-      @if(passwordForm.get('currentPassword')?.errors!==null&&passwordForm.get('currentPassword')?.touched&&currentPasswordError===''){
+  <h1 class="text-center my-5 animated-title">Change Password</h1>
+  <form [formGroup]="passwordForm" (ngSubmit)="changeUserPassword(passwordForm)" class="w-50 m-auto shadow p-4 rounded-3 bg-light gradient-custom-4">
+    <div class="my-3">
+      <input formControlName="currentPassword" class="form-control shadow-sm" type="password" placeholder="Current password">
+      @if(passwordForm.get('currentPassword')?.errors!==null && passwordForm.get('currentPassword')?.touched && currentPasswordError===''){
       <div class="text-danger mt-3">
-        @if(passwordForm.get('currentPassword')?.errors?.['required']){<p>current password required</p> }
-        @if(passwordForm.get('currentPassword')?.errors?.['minlength']||passwordForm.get('currentPassword')?.errors?.['maxlength'])
-        {<p>current password 6,20</p> }
+        @if(passwordForm.get('currentPassword')?.errors?.['required']){
+          <p>Current password is required</p>
+        }
+        @if(passwordForm.get('currentPassword')?.errors?.['minlength'] || passwordForm.get('currentPassword')?.errors?.['maxlength']){
+          <p>Password must be between 6 and 20 characters</p>
+        }
       </div>
       }
       @if(currentPasswordError!==''){
@@ -42,23 +45,29 @@
       </div>
       }
     </div>
-    <div class="w-75 m-auto my-4">
-      <input formControlName="password" class="form-control" type="password" placeholder="password">
-      @if(passwordForm.get('password')?.errors!==null&&passwordForm.get('password')?.touched){
+    <div class="my-3">
+      <input formControlName="password" class="form-control shadow-sm" type="password" placeholder="New password">
+      @if(passwordForm.get('password')?.errors!==null && passwordForm.get('password')?.touched){
       <div class="text-danger mt-3">
-        @if(passwordForm.get('password')?.errors?.['required']){<p>password required</p> }
-        @if(passwordForm.get('password')?.errors?.['minlength']||passwordForm.get('password')?.errors?.['maxlength'])
-        {<p>password 6,20</p> }
+        @if(passwordForm.get('password')?.errors?.['required']){
+          <p>New password is required</p>
+        }
+        @if(passwordForm.get('password')?.errors?.['minlength'] || passwordForm.get('password')?.errors?.['maxlength']){
+          <p>Password must be between 6 and 20 characters</p>
+        }
       </div>
       }
     </div>
-    <div class="w-75 m-auto my-4">
-      <input formControlName="confirmPassword" class="form-control" type="password" placeholder="confirm password">
-      @if(passwordForm.get('confirmPassword')?.errors!==null&&passwordForm.get('confirmPassword')?.touched&&passwordError===''){
+    <div class="my-3">
+      <input formControlName="confirmPassword" class="form-control shadow-sm" type="password" placeholder="Confirm password">
+      @if(passwordForm.get('confirmPassword')?.errors!==null && passwordForm.get('confirmPassword')?.touched && passwordError===''){
       <div class="text-danger mt-3">
-        @if(passwordForm.get('confirmPassword')?.errors?.['required']){<p>password required</p> }
-        @if(passwordForm.get('confirmPassword')?.errors?.['minlength']||passwordForm.get('confirmPassword')?.errors?.['maxlength'])
-        {<p>confirm password 6,20</p> }
+        @if(passwordForm.get('confirmPassword')?.errors?.['required']){
+          <p>Confirm password is required</p>
+        }
+        @if(passwordForm.get('confirmPassword')?.errors?.['minlength'] || passwordForm.get('confirmPassword')?.errors?.['maxlength']){
+          <p>Password must be between 6 and 20 characters</p>
+        }
       </div>
       }
       @if(passwordError!==''){
@@ -67,8 +76,8 @@
       </div>
       }
     </div>
-    <div class="w-75 m-auto my-4">
-      <button [disabled]="passwordForm.invalid" class="btn btn-danger">Update Password</button>
+    <div class="my-3 text-center">
+      <button [disabled]="passwordForm.invalid" class="btn btn-gradient-custom">Update Password</button>
     </div>
   </form>
 </div>

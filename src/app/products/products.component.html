@@ -4,36 +4,40 @@
   </div>
   <img src="images/iphone_14.jpg" style="width: 800px;" alt="iPhone">
 </div>
-<div class="cont mt-5">
-  @for(product of products; track product._id){
-  <div class="product-card ">
-      <div class="product-card__image">
-          <img [src]="imgDomain+product.cover" [alt]="product.name">
-      </div>
-      <div class="product-card__info">
-          <h2 class="product-card__title">{{product.name}}</h2>
-          <p class="product-card__description">{{product.description|description:15}}</p>
-          <div class="product-card__price-row">
-              <span class="product-card__price">{{product.price|currency}}</span>
+@if (loading) {<app-spinner ></app-spinner>}
+@else {
+  <div class="cont mt-5">
+    @for(product of products; track product._id){
+    <div class="product-card ">
+        <div class="product-card__image">
+            <img [src]="imgDomain+product.cover" [alt]="product.name">
+        </div>
+        <div class="product-card__info">
+            <h2 class="product-card__title">{{product.name}}</h2>
+            <p class="product-card__description">{{product.description|description:15}}</p>
+            <div class="product-card__price-row">
+                <span class="product-card__price">{{product.price|currency}}</span>
 
-              <button class="product-card__btn" [routerLink]="['/products',product._id]">See More</button>
+                <button class="product-card__btn gradient-custom-4" [routerLink]="['/products',product._id]">See More</button>
 
-          </div>
-      </div>
+            </div>
+        </div>
+    </div>
+  }
+  </div>
+  <div class="container m-auto mt-5 w-25">
+    <ul class="pagination">
+      @if(pagination.prev){<li (click)="changePage(pagination.prev)" class="page-item"><button
+          class="page-link">Previous</button></li>}
+      @if(pagination.currentPage!==1)
+      {<li (click)="changePage(1)" class="page-item"><button class="page-link">1</button></li>}
+      <li class="page-item"><button class="page-link">{{pagination.currentPage}}</button></li>
+      @if(pagination.currentPage!==pagination.totalPages)
+      {<li (click)="changePage(pagination.totalPages!)" class="page-item"><button
+          class="page-link">{{pagination.totalPages}}</button></li>}
+      @if(pagination.next){<li (click)="changePage(pagination.next)" class="page-item"><button
+          class="page-link">Next</button></li>}
+    </ul>
   </div>
 }
-</div>
-<div class="container m-auto mt-5 w-25">
-  <ul class="pagination">
-    @if(pagination.prev){<li (click)="changePage(pagination.prev)" class="page-item"><button
-        class="page-link">Previous</button></li>}
-    @if(pagination.currentPage!==1)
-    {<li (click)="changePage(1)" class="page-item"><button class="page-link">1</button></li>}
-    <li class="page-item"><button class="page-link">{{pagination.currentPage}}</button></li>
-    @if(pagination.currentPage!==pagination.totalPages)
-    {<li (click)="changePage(pagination.totalPages!)" class="page-item"><button
-        class="page-link">{{pagination.totalPages}}</button></li>}
-    @if(pagination.next){<li (click)="changePage(pagination.next)" class="page-item"><button
-        class="page-link">Next</button></li>}
-  </ul>
-</div>
+

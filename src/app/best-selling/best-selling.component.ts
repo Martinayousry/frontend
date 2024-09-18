@@ -6,11 +6,12 @@ import { DescriptionPipe } from '../pipes/description.pipe';
 import { RouterLink } from '@angular/router';
 import { WishlistService } from '../services/wishlist.service';
 import { CartService } from '../services/cart.service';
+import { SpinnerComponent } from "../spinner/spinner.component";
 
 @Component({
   selector: 'app-best-selling',
   standalone: true,
-  imports: [CurrencyPipe,DescriptionPipe,RouterLink],
+  imports: [CurrencyPipe, DescriptionPipe, RouterLink, SpinnerComponent],
   templateUrl: './best-selling.component.html',
   styleUrl: './best-selling.component.scss'
 })
@@ -19,6 +20,7 @@ export class BestSellingComponent implements OnInit, OnDestroy {
   imgDomain: string = '';
   search: string = '';
   products: any[] = []
+  loading: boolean = true;
 
   constructor( private _ProductsService: ProductsService,private _CartService:CartService) { }
 
@@ -30,6 +32,7 @@ export class BestSellingComponent implements OnInit, OnDestroy {
     this.imgDomain = this._ProductsService.productImages;
     this.subscription = this._ProductsService.getProducts(16, 1, '-sold', this.search).subscribe((res) => {
       this.products = res.data;
+      this.loading = false;
     })
   }
 
